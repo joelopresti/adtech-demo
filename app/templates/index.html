@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>{{ title }} - microblog</title>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type='text/javascript' src="//wurfl.io/wurfl.js"></script>
+  </head>
+  <body>
+
+  <script>
+  	var route = "/wurfl_meme/" + WURFL.form_factor + "/" + WURFL.complete_device_name;
+  	$.ajax({
+  		url: route,
+  		method: 'GET',
+  		success: function(data){
+  			console.log(data.data);
+  			$('.meme').append('<img src="//wit.wurfl.io/' + data.data.url + '">');
+    	},
+  	});
+
+  </script>
+
+      <div class="meme"></div>
+  </body>
+</html>
