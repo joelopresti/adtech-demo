@@ -2,10 +2,18 @@ from flask import Flask, render_template, redirect, url_for, jsonify
 from app import app
 import requests
 
+
+
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html', title='Home')
+
+    h = requests.get('http://www.scientiamobile.com/site/header')
+    header = h.text
+    f = requests.get('http://www.scientiamobile.com/site/footer')
+    footer = f.text
+    return render_template('index.html', header=header, footer=footer)
+
 
 @app.route('/wurfl_meme/<form_factor>/<text>')
 def meme(form_factor, text):
